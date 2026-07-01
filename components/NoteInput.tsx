@@ -1,9 +1,25 @@
 "use client";
 
+import { useNotes } from "@/context/NotesContext";
+import { useState } from "react";
+
 const NoteInput = () => {
+  const [noteText, setNoteText] = useState<string>("");
+  const { addNote } = useNotes();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (noteText.trim()) {
+      addNote(noteText.trim());
+    }
+
+    setNoteText("");
+  };
+
   return (
     <div className="mb-8">
-      <form className="space-y-4">
+      <form className="space-y-4" onSubmit={handleSubmit}>
         <div>
           <label className="block text-sm font-medium mb-2" htmlFor="note">
             Add a new note
@@ -14,6 +30,8 @@ const NoteInput = () => {
             id="note"
             placeholder="Write your note here..."
             rows={3}
+            value={noteText}
+            onChange={(e) => setNoteText(e.target.value)}
           ></textarea>
         </div>
 

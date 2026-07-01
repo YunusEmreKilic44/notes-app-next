@@ -1,4 +1,5 @@
 import NoteInput from "@/components/NoteInput";
+import NotesList from "@/components/NotesList";
 import Link from "next/link";
 
 export default function Home() {
@@ -16,6 +17,8 @@ export default function Home() {
           </Link>
         </div>
         <NoteInput />
+
+        <NotesList />
       </div>
     </div>
   );
